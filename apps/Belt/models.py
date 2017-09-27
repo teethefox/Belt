@@ -20,13 +20,13 @@ class UserManager(models.Manager):
             if field == "firstname":
                 if not field in errors and not post_data['firstname'].isalpha():
                     errors[field] = "First name must contain letters only"
-                if not field in errors and len(value) < 2:
-                    errors[field] = "{} field must be at least 2 letters".format(field.replace('_', ' '))
+                if not field in errors and len(value) < 3:
+                    errors[field] = "{} field must be at least 3 letters".format(field.replace('_', ' '))
             if field == "lastname":
                 if not field in errors and not post_data['lastname'].isalpha():
                     errors[field] = "Last name must contain letters only"
-                if not field in errors and len(value) < 2:
-                    errors[field] = "{} field must be at least 2 letters".format(field.replace('_', ' '))
+                if not field in errors and len(value) < 3:
+                    errors[field] = "{} field must be at least 3 letters".format(field.replace('_', ' '))
             if field == "password":
                 if not field in errors and len(value) < 8:
                     errors[field] = "Password must be contain more than 8 characters"
@@ -60,6 +60,13 @@ class UserManager(models.Manager):
             errors['email']="email or password is incorrect"
 
         return errors
+    def validate_add(self, post_data):
+        errors={}
+        for field, value in post_data.iteritems():
+            if len(value) < 1:
+                errors[field] = "{} field is reqired".format(field.replace('_', ' '))
+        return errors
+   
 class User(models.Model):
     firstname= models.CharField(max_length=255)
     lastname=models.CharField(max_length=255)
@@ -68,6 +75,12 @@ class User(models.Model):
     objects = UserManager()
     def __str__(self):
         return self.email
+class Destination(models.Model):
+    destination=models.CharField(max_length=255)
+    start = models.DateTimeField( null=True,blank=True)
+    end = models.DateTimeField(null=True,blank=True)
+    description=models.CharField(max_length=255)
+    user_destinations=models.ManyToManyField(User, related_name="user_destinations")
 
 
 # Create your models here.

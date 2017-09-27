@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+        <style>
+                table {
+                    font-family: arial, sans-serif;
+                    border-collapse: collapse;
+                    width: 100%;
+                }
+                td, th {
+                    border: 1px solid #dddddd;
+                    text-align: left;
+                    padding: 8px;
+                }
+                tr:nth-child(even) {
+                    background-color: #dddddd;
+                }
+                #form1{
+                    
+                    width:30%;
+                    padding-left:10%;
+                }
+                #button{
+                    background-color:"limegreen";
+                }
+                .messages{
+                    color:red;
+                    font-weight:bolder;
+                }
+                </style>
+    Success! Welcome {{user.firstname}}
+    {% if messages %}
+    <div class="messages">
+        {% for message in messages %}
+        <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+        {% endfor %}
+    </div>
+    {% endif %}
+    
+<a href="/add">Add Travel Plans</a>
+<div>
+    
+    <table>
+        
+        <tr><h2>Your Travel Plans:</h2>
+          <th>Destination:</th>
+          <th>Plan</th>
+          <th>Start Date:</th>
+          <th> End Date:</th>
+          <th> Join!</th>
+        </tr>
+        {% for destination in destinations %}
+        <tr>
+          <td ><a href="/show/{{destination.id}}">{{ destination.destination }}</a></td>
+          <td>{{ destination.description }} </td>
+          <td>{{ destination.start }}</td>
+          <td>{{destination.end}}</td>
+         
+        
+         
+        </tr>
+      {% endfor %}
+    </table>
+    <hr>
+   
+    <table>
+            
+            <tr> <h2>Others' travel plans:</h2>
+              <th>Destination:</th>
+              <th>Plan</th>
+              <th>Start Date:</th>
+              <th> End Date:</th>
+              <th> Join!</th>
+            </tr>
+            {% for otherdestination in otherdestinations %}
+            <tr>
+              <td ><a href="/show/{{otherdestination.id}}">{{ otherdestination.destination }}</a></td>
+              <td>{{ otherdestination.description }} </td>
+              <td>{{ otherdestination.start }}</td>
+              <td>{{otherdestination.end}}</td>
+            <td><a href="/join/{{otherdestination.id}}">Join</a></td>
+            
+             
+            </tr>
+          {% endfor %}
+        </table>
+    
+</div>
+<a href="/logout">Log Out</a>
+
+   
+</body>
+</html>
