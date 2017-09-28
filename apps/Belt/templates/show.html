@@ -8,12 +8,15 @@
 </head>
 <body>
     <h1> {{destination.destination}}</h1>
-    Planned By: {{user.firstname}}<br>
+    Planned By: {{user}}<br>
     Description: {{destination.description}}<br>
     Travel Date From: {{destination.start}}<br>
     Travel Date To: {{destination.end}}<br>
     <hr>
-    Other users joining the trip:
+    Other users joining the trip:<br>
+    {% for otheruser in otherusers %}
+    {{otheruser.firstname}}<br>
+    {%endfor%}
     <a href="/logout">Log Out</a>
     <a href="/success">Home</a>
     

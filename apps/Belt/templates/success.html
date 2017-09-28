@@ -55,12 +55,12 @@
           <th> End Date:</th>
           <th> Join!</th>
         </tr>
-        {% for destination in destinations %}
+        {% for trip in trips %}
         <tr>
-          <td ><a href="/show/{{destination.id}}">{{ destination.destination }}</a></td>
-          <td>{{ destination.description }} </td>
-          <td>{{ destination.start }}</td>
-          <td>{{destination.end}}</td>
+          <td ><a href="/show/{{trip.id}}">{{ trip.destination }}</a></td>
+          <td>{{ trip.description }} </td>
+          <td>{{ trip.start }}</td>
+          <td>{{trip.end}}</td>
          
         
          
@@ -78,13 +78,13 @@
               <th> End Date:</th>
               <th> Join!</th>
             </tr>
-            {% for otherdestination in otherdestinations %}
+            {% for othertrip in othertrips %}
             <tr>
-              <td ><a href="/show/{{otherdestination.id}}">{{ otherdestination.destination }}</a></td>
-              <td>{{ otherdestination.description }} </td>
-              <td>{{ otherdestination.start }}</td>
-              <td>{{otherdestination.end}}</td>
-            <td><a href="/join/{{otherdestination.id}}">Join</a></td>
+              <td ><a href="/show/{{othertrip.id}}">{{ othertrip.destination }}</a></td>
+              <td>{{ othertrip.description }} </td>
+              <td>{{ othertrip.start }}</td>
+              <td>{{othertrip.end}}</td>
+            <td><a href="/join/{{othertrip.id}}">Join</a></td>
             
              
             </tr>

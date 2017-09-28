@@ -80,7 +80,7 @@ class Destination(models.Model):
     start = models.DateTimeField( null=True,blank=True)
     end = models.DateTimeField(null=True,blank=True)
     description=models.CharField(max_length=255)
-    user_destinations=models.ManyToManyField(User, related_name="user_destinations")
+    users=models.ManyToManyField(User, related_name="destinations")
 
 
 # Create your models here.
